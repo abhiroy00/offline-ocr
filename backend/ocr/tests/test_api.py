@@ -17,6 +17,27 @@ def test_login_requires_valid_credentials(api_client, django_user_model):
 
 
 @pytest.mark.django_db
+def test_login_establishes_session_for_plain_link_downloads(api_client, django_user_model):
+    """Regression test: CSV/Excel export and 'open uploaded scan' are plain
+    <a href> links in the UI -- normal browser navigation, which can't carry
+    the Authorization header our axios client attaches to API calls. They
+    only work if login also establishes a session cookie. Found live: every
+    download link 401'd even while logged in via the token.
+    """
+    user = django_user_model.objects.create_user(username="bob", password="correct-horse")
+    job = OCRJob.objects.create(owner=user)
+
+    resp = api_client.post(reverse("login"), {"username": "bob", "password": "correct-horse"})
+    assert resp.status_code == 200
+
+    # Deliberately do NOT set an Authorization header -- rely only on the
+    # session cookie the test client now holds, exactly like a plain link click.
+    resp = api_client.get(reverse("ocr-job-export", args=[job.id]))
+    assert resp.status_code == 200
+    assert resp["Content-Type"] == "text/csv"
+
+
+@pytest.mark.django_db
 def test_system_status_reports_engine_without_auth(api_client):
     resp = api_client.get(reverse("ocr-system-status"))
     assert resp.status_code == 200

@@ -54,7 +54,7 @@ CSV_COLUMNS = [
 @authentication_classes([])
 @permission_classes([AllowAny])
 def login_view(request):
-    from django.contrib.auth import authenticate
+    from django.contrib.auth import authenticate, login
 
     username = request.data.get("username")
     password = request.data.get("password")
@@ -62,12 +62,20 @@ def login_view(request):
     if not user:
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
     token, _ = Token.objects.get_or_create(user=user)
+    # Also establish a session cookie: plain <a href> downloads (CSV/Excel
+    # export, "open uploaded scan") are normal browser navigations that
+    # can't carry the Authorization header our axios client attaches to API
+    # calls, so they rely on SessionAuthentication + cookie instead.
+    login(request, user)
     return Response({"token": token.key, "username": user.username})
 
 
 class LogoutView(APIView):
     def post(self, request):
+        from django.contrib.auth import logout
+
         Token.objects.filter(user=request.user).delete()
+        logout(request)
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
