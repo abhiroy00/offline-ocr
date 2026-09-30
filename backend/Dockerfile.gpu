@@ -1,0 +1,34 @@
+# GPU image for the EC2 deployment box (Celery worker + optionally backend).
+#
+# PaddlePaddle GPU wheels are published per-CUDA-version, so this Dockerfile
+# hard-codes CUDA 12.3 as an example -- confirm the actual driver/CUDA
+# version on the target instance first (`nvidia-smi`) and adjust the base
+# image tag + PADDLE_INDEX_URL below if it differs. Do not blindly reuse
+# this file across a different CUDA version.
+FROM nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04
+
+ARG PADDLE_INDEX_URL=https://www.paddlepaddle.org.cn/packages/stable/cu123/
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.11 python3-pip python3-setuptools \
+    libgl1 libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/* \
+    && ln -sf /usr/bin/python3.11 /usr/bin/python
+
+WORKDIR /app
+
+COPY requirements/ requirements/
+RUN pip install -r requirements/base.txt \
+    && pip install paddlepaddle-gpu==3.0.0 -i ${PADDLE_INDEX_URL} \
+    && pip install paddleocr==2.9.1 shapely==2.0.6 pyclipper==1.3.0.post6 \
+    && pip install gunicorn
+
+COPY . .
+
+ENV OCR_DEVICE=gpu
+
+CMD ["celery", "-A", "config", "worker", "--loglevel=info", "--concurrency=4"]

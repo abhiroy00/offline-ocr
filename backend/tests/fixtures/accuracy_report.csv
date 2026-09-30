@@ -1,0 +1,37 @@
+file,field,value,confidence,needs_review
+1605.pdf,certificate_no,,0.0,True
+1605.pdf,company_name,KAMANTMETALSEALLOYS,0.9935,False
+1605.pdf,share_holder_name,KAMANI BROTHERS PRIVATE LTD,0.9909,False
+1605.pdf,date_of_issue,1967-08-14,0.7,False
+1605.pdf,number_of_shares,25,0.75,False
+1605.pdf,share_type,Ordinary (Equity),0.75,False
+1605.pdf,face_value,10,0.75,False
+1605.pdf,distinctive_from,18525,0.4204,True
+1605.pdf,distinctive_to,,0.0,True
+1606.pdf,certificate_no,OB/1606,0.9444,False
+1606.pdf,company_name,KAMANIMETALSEALLOYS,0.9856,False
+1606.pdf,share_holder_name,KAMANI BROTHERS PRIVATE LTD,0.9962000000000001,False
+1606.pdf,date_of_issue,1967-08-14,0.7,False
+1606.pdf,number_of_shares,25,0.75,False
+1606.pdf,share_type,Ordinary (Equity),0.75,False
+1606.pdf,face_value,10,0.75,False
+1606.pdf,distinctive_from,,0.0,True
+1606.pdf,distinctive_to,,0.0,True
+1607.pdf,certificate_no,,0.0,True
+1607.pdf,company_name,KAMANTMETALSEALLOYS,0.9895,False
+1607.pdf,share_holder_name,KAMANI BROTHERS PRIVATE LTD,0.999,False
+1607.pdf,date_of_issue,1967-08-14,0.7,False
+1607.pdf,number_of_shares,25,0.75,False
+1607.pdf,share_type,Ordinary (Equity),0.75,False
+1607.pdf,face_value,10,0.75,False
+1607.pdf,distinctive_from,,0.0,True
+1607.pdf,distinctive_to,,0.0,True
+1608.pdf,certificate_no,OB1608,1.0,False
+1608.pdf,company_name,KAMANIMETALSEALLOYS,0.9946,False
+1608.pdf,share_holder_name,KAMANI BROTHERS PRIVATE LTD,0.9702000000000001,False
+1608.pdf,date_of_issue,1967-08-14,0.7,False
+1608.pdf,number_of_shares,25,0.75,False
+1608.pdf,share_type,Ordinary (Equity),0.75,False
+1608.pdf,face_value,10,0.75,False
+1608.pdf,distinctive_from,,0.0,True
+1608.pdf,distinctive_to,,0.0,True

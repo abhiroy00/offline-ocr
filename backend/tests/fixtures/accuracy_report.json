@@ -1,0 +1,258 @@
+[
+  {
+    "file": "1605.pdf",
+    "num_pages": 2,
+    "fields": {
+      "certificate_no": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      },
+      "company_name": {
+        "value": "KAMANTMETALSEALLOYS",
+        "confidence": 0.9935,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "share_holder_name": {
+        "value": "KAMANI BROTHERS PRIVATE LTD",
+        "confidence": 0.9909,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "date_of_issue": {
+        "value": "1967-08-14",
+        "confidence": 0.7,
+        "source": "regex",
+        "needs_review": false
+      },
+      "number_of_shares": {
+        "value": "25",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "share_type": {
+        "value": "Ordinary (Equity)",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "face_value": {
+        "value": "10",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "distinctive_from": {
+        "value": "18525",
+        "confidence": 0.4204,
+        "source": "paddleocr",
+        "needs_review": true
+      },
+      "distinctive_to": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      }
+    },
+    "validation_status": "failed",
+    "validation_flags": "Distinctive numbers missing/unreadable",
+    "transfer_rows": 1,
+    "transfer_rows_needing_review": 1
+  },
+  {
+    "file": "1606.pdf",
+    "num_pages": 2,
+    "fields": {
+      "certificate_no": {
+        "value": "OB/1606",
+        "confidence": 0.9444,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "company_name": {
+        "value": "KAMANIMETALSEALLOYS",
+        "confidence": 0.9856,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "share_holder_name": {
+        "value": "KAMANI BROTHERS PRIVATE LTD",
+        "confidence": 0.9962000000000001,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "date_of_issue": {
+        "value": "1967-08-14",
+        "confidence": 0.7,
+        "source": "regex",
+        "needs_review": false
+      },
+      "number_of_shares": {
+        "value": "25",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "share_type": {
+        "value": "Ordinary (Equity)",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "face_value": {
+        "value": "10",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "distinctive_from": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      },
+      "distinctive_to": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      }
+    },
+    "validation_status": "failed",
+    "validation_flags": "Distinctive numbers missing/unreadable",
+    "transfer_rows": 1,
+    "transfer_rows_needing_review": 1
+  },
+  {
+    "file": "1607.pdf",
+    "num_pages": 2,
+    "fields": {
+      "certificate_no": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      },
+      "company_name": {
+        "value": "KAMANTMETALSEALLOYS",
+        "confidence": 0.9895,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "share_holder_name": {
+        "value": "KAMANI BROTHERS PRIVATE LTD",
+        "confidence": 0.999,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "date_of_issue": {
+        "value": "1967-08-14",
+        "confidence": 0.7,
+        "source": "regex",
+        "needs_review": false
+      },
+      "number_of_shares": {
+        "value": "25",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "share_type": {
+        "value": "Ordinary (Equity)",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "face_value": {
+        "value": "10",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "distinctive_from": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      },
+      "distinctive_to": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      }
+    },
+    "validation_status": "failed",
+    "validation_flags": "Distinctive numbers missing/unreadable",
+    "transfer_rows": 1,
+    "transfer_rows_needing_review": 1
+  },
+  {
+    "file": "1608.pdf",
+    "num_pages": 2,
+    "fields": {
+      "certificate_no": {
+        "value": "OB1608",
+        "confidence": 1.0,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "company_name": {
+        "value": "KAMANIMETALSEALLOYS",
+        "confidence": 0.9946,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "share_holder_name": {
+        "value": "KAMANI BROTHERS PRIVATE LTD",
+        "confidence": 0.9702000000000001,
+        "source": "paddleocr",
+        "needs_review": false
+      },
+      "date_of_issue": {
+        "value": "1967-08-14",
+        "confidence": 0.7,
+        "source": "regex",
+        "needs_review": false
+      },
+      "number_of_shares": {
+        "value": "25",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "share_type": {
+        "value": "Ordinary (Equity)",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "face_value": {
+        "value": "10",
+        "confidence": 0.75,
+        "source": "regex",
+        "needs_review": false
+      },
+      "distinctive_from": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      },
+      "distinctive_to": {
+        "value": null,
+        "confidence": 0.0,
+        "source": "regex",
+        "needs_review": true
+      }
+    },
+    "validation_status": "failed",
+    "validation_flags": "Distinctive numbers missing/unreadable",
+    "transfer_rows": 2,
+    "transfer_rows_needing_review": 2
+  }
+]

@@ -1,0 +1,6 @@
+# Convenience file for local development: base app deps + CPU OCR engine.
+# Production/EC2 GPU boxes should instead run:
+#   pip install -r requirements/base.txt -r requirements/ocr-gpu.txt
+# (see requirements/ocr-gpu.txt for CUDA-version-specific instructions)
+-r requirements/base.txt
+-r requirements/ocr-cpu.txt

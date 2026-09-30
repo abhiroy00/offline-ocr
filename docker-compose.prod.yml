@@ -1,0 +1,84 @@
+# EC2 GPU deployment stack.
+#
+# Prerequisite on the host: NVIDIA driver + the NVIDIA Container Toolkit
+# installed (`nvidia-ctk runtime configure --runtime=docker`) so the
+# `deploy.resources.reservations.devices` GPU reservation below is honored.
+# Verify with `docker run --rm --gpus all nvidia/cuda:12.3.2-base-ubuntu22.04 nvidia-smi`
+# before starting this stack.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-ocr}
+      POSTGRES_USER: ${POSTGRES_USER:-ocr}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    command: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3 --timeout 120
+    volumes:
+      - media_data:/app/media
+      - static_data:/app/staticfiles
+    environment:
+      DJANGO_DEBUG: "False"
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-*}
+      DATABASE_URL: postgres://${POSTGRES_USER:-ocr}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-ocr}
+      REDIS_URL: redis://redis:6379/0
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS}
+      OCR_DEVICE: cpu
+    depends_on:
+      - postgres
+      - redis
+    restart: unless-stopped
+
+  celery:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.gpu
+    volumes:
+      - media_data:/app/media
+    environment:
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DATABASE_URL: postgres://${POSTGRES_USER:-ocr}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-ocr}
+      REDIS_URL: redis://redis:6379/0
+      CELERY_WORKERS: ${CELERY_WORKERS:-8}
+      OCR_DEVICE: gpu
+    depends_on:
+      - postgres
+      - redis
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    restart: unless-stopped
+
+  nginx:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - static_data:/usr/share/nginx/static:ro
+      - media_data:/usr/share/nginx/media:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  media_data:
+  static_data:
