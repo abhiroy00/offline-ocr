@@ -29,6 +29,10 @@ services:
     environment:
       DJANGO_DEBUG: "True"
       DJANGO_SECRET_KEY: dev-only-insecure-secret-key
+      # Vite's dev proxy (changeOrigin: true) rewrites the Host header to
+      # match its target -- "backend:8000" inside the compose network -- so
+      # Django must allow that hostname too, not just localhost.
+      DJANGO_ALLOWED_HOSTS: localhost,127.0.0.1,backend
       DATABASE_URL: postgres://ocr:ocr@postgres:5432/ocr
       REDIS_URL: redis://redis:6379/0
       CORS_ALLOWED_ORIGINS: http://localhost:5173
