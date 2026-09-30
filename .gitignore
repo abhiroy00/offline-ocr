@@ -36,3 +36,7 @@ htmlcov/
 
 # Local AI assistant tool config (machine-specific, not part of the app)
 .claude/
+
+# Machine-local Docker Compose overrides (e.g. port remaps to dodge
+# conflicts with other projects on this box)
+docker-compose.override.yml

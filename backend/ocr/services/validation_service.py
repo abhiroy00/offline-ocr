@@ -30,11 +30,13 @@ def validate_certificate_fields(fields: dict) -> List[ValidationOutcome]:
     outcomes: List[ValidationOutcome] = []
 
     shares = _to_int(fields.get("number_of_shares"))
-    outcomes.append(
-        ValidationOutcome("number_of_shares_numeric", shares is not None, "Number of shares is not a valid integer")
-        if fields.get("number_of_shares") is not None
-        else ValidationOutcome("number_of_shares_numeric", False, "Number of shares missing")
-    )
+    if fields.get("number_of_shares") is None:
+        shares_message = "Number of shares missing"
+    elif shares is None:
+        shares_message = "Number of shares is not a valid integer"
+    else:
+        shares_message = ""
+    outcomes.append(ValidationOutcome("number_of_shares_numeric", shares is not None, shares_message))
 
     face_value = fields.get("face_value")
     face_value_ok = False
